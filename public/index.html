@@ -67,23 +67,162 @@
     <script src="/__/firebase/7.14.6/firebase-storage.js"></script>
     <!-- Carga la configuración de tu proyecto en el servidor de Firebase. -->
     <script src="/__/firebase/init.js"></script>
-  <body>
-    <h1>Ejemplo de PWA</h1>
-    <p>
-      <output id="mensaje">
-        <progress max="100">Cargando Firebase SDK&hellip;</progress>
-      </output>
-    </p>
-    <mi-footer></mi-footer>
-    <script>
-      try {
-        let app = firebase.app();
-        let apis = ["auth", "firestore", "storage"]
-          .filter(api => typeof app[api] === "function");
-        mensaje.value = `Firebase SDK cargó con: ${apis.join(', ')}`;
-      } catch (e) {
-        muestraError(e);
-      }
-    </script>
+    <body>
+      <form action="javascript:guarda()">
+          <header>
+              <body>
+                  <body style="background-color:#FF00FF;">
+  
+              </body>
+              <h1>Registro de alumnos</h1>
+              <button id="agregar" type="button" onclick="alta();">Agregar...</button>
+              <button type="submit">Guardar</button>
+              <button id="eliminar" type="button" onclick="elimina();">Eliminar</button>
+              
+              
+          </header>
+          <p><input id="nombre" type="text" placeholder="nombre del alumno" required></p>
+          <p><input id="carrera" type="text" placeholder="Nombre de su carrera" required></p>
+          <p><input id="division" type="text" placeholder="nombrede su division" required></p>
+          
+        </select>
+          <ul id="lista">
+              <li><progress max="100">Cargando…</progress></li>
+  
+          </ul>
+          
+  
+          <mi-footer></mi-footer>
+       
+      </form>
+      
+      <script>
+       
+          let id = "";
+          const firestore = firebase.firestore();
+          muestraLista();
+          alta();
+  
+          function muestraLista() {
+            
+              firestore.collection("REGISTRO").orderBy("NOM_NOMBRE").onSnapshot
+              firestore.collection("REGISTRO").orderBy("NOM_CARRERA").onSnapshot
+                  firestore.collection("REGISTRO").orderBy("NOM_DIVISION").onSnapshot(
+               
+                  documentos => {
+                      let inner = "";
+                      documentos.forEach(doc =>
+                          inner += /* html */
+                          `<li>
+                <button type=button onclick="muestra('${cod(doc.id)}')">
+                  ${cod(doc.data().NOM_NOMBRE)} 
+                </button>
+                <button type=button onclick="muestra('${cod(doc.id)}')">
+                  ${cod(doc.data().NOM_CARRERA)} 
+              </button>
+              <button type=button onclick="muestra('${cod(doc.id)}')">
+                  ${cod(doc.data().NOM_DIVISION)} 
+              </button>
+              
+                </button>
+                
+              </li>`);
+                      lista.innerHTML = inner;
+                  },
+                  e => {
+                      procesaError(e);
+                      muestraLista();
+                  }
+              );
+          }
+  
+          function alta() {
+              agregar.disabled = true;
+              eliminar.disabled = true; 
+              id = ""; 
+              nombre.value = ""; 
+              carrera.value="";
+              division.value="";
+             
+          }
+          
+          async function muestra(idSel) {
+              try {
+                  agregar.disabled = false; 
+                  eliminar.disabled = false; 
+              
+                  let doc = await firestore.collection("REGISTRO").doc(idSel).get();
+                  if (doc.exists) {
+                      id = doc.id;
+                      let data = doc.data();
+                      nombre.value = data.NOM_NOMBRE || "";
+                      carrera.value = data.NOM_CARRERA || "";
+                      division.value= data.NOM_DIVISION || "";
+                    
+  
+                  } else {
+                      alert(" Alumno No registrado.");
+                      alta();
+                  }
+              } catch (e) {
+                  procesaError(e);
+              }
+          }
+          async function guarda() {
+              try {
+                  const modelo = {
+                      NOM_NOMBRE: nombre.value.trim(),
+                      NOM_CARRERA: carrera.value.trim(),
+                      NOM_DIVISION : division.value.trim()
+                    
+                  };
+                  if (id) {
+                  
+                      await firestore.collection("REGISTRO").doc(id).set(modelo);
+                  } else {
+                  
+                      await firestore.collection("REGISTRO").add(modelo);
+                  }
+                  alta();
+              } catch (e) {
+                  procesaError(e);
+              }
+          }
+          async function elimina() {
+              try {
+               
+                  await firestore.collection("REGISTRO").doc(id).delete();
+                  alta();
+              } catch (e) {
+                  procesaError(e);
+              }
+          }
+  
+          function procesaError(e) {
+              console.log(e);
+              alert(e.message);
+          }
+        
+          function cod(valor) {
+              return (valor || "").toString()
+                  .replace(/[<>"']/g,
+                      /** @param {string} letra */
+                      letra => {
+                          switch (letra) {
+                              case "<":
+                                  return "&lt;";
+                              case ">":
+                                  return "&gt;";
+                              case '"':
+                                  return "&quot;";
+                              case "'":
+                                  return "&#039;";
+                              default:
+                                  return letra;
+                          }
+                      });
+          }
+      </script>
+      
   </body>
 </html>

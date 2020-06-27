@@ -1,3 +1,3 @@
 # aplipwa
 
-Ejemplo de PWA.
+Aplicacion web de registro de  alumnos.
