@@ -127,7 +127,7 @@
               
                 </button>
                 
-              </li></center`);
+              </li></center>`);
                       lista.innerHTML = inner;
                   },
                   e => {
@@ -206,9 +206,9 @@
         
           function cod(valor) {
             return (valor || "").toString()
-                .replace(/[<>"']/g,
-                    /** @param {string} letra */
-                    letra => {
+                  .replace(/[<>"']/g,
+                      /** @param {string} letra */
+                      letra => {
                           switch (letra) {
                               case "<":
                                   return "&lt;";
