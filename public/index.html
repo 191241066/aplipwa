@@ -127,7 +127,7 @@
               
                 </button>
                 
-              </li></center>`);
+              </li></center`);
                       lista.innerHTML = inner;
                   },
                   e => {
@@ -157,7 +157,7 @@
                       id = doc.id;
                       let data = doc.data();
                       nombre.value = data.NOM_NOMBRE || "";
-                      carre<ra.value = data.NOM_CARRERA || "";
+                      carrera.value = data.NOM_CARRERA || "";
                       division.value= data.NOM_DIVISION || "";
                     
   
@@ -205,10 +205,10 @@
           }
         
           function cod(valor) {
-              return (valor || "").toString()
-                  .replace(/[<>"']/g,
-                      /** @param {string} letra */
-                      letra => {
+            return (valor || "").toString()
+                .replace(/[<>"']/g,
+                    /** @param {string} letra */
+                    letra => {
                           switch (letra) {
                               case "<":
                                   return "&lt;";
