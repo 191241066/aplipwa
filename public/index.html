@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejemplo de PWA</title>
+    <title>Registro de alumnos</title>
     <script>
       /* invoca a registraServiceWorker instalar la aplicación en el caché del
        * navegador. No se espera a que termine el registro. */
@@ -70,10 +70,7 @@
     <body>
       <form action="javascript:guarda()">
           <header>
-              <body>
-                  <body style="background-color:#FF00FF;">
-  
-              </body>
+              
               <h1>Registro de alumnos</h1>
               <button id="agregar" type="button" onclick="alta();">Agregar...</button>
               <button type="submit">Guardar</button>
@@ -86,7 +83,7 @@
           <p><input id="division" type="text" placeholder="nombrede su division" required></p>
           
         </select>
-          <ul id="lista">
+          <ul >
               <li><progress max="100">Cargando…</progress></li>
   
           </ul>
