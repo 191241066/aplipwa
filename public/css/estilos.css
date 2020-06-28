@@ -30,3 +30,41 @@ body {
     font-size: large;
     font-weight: bold
   }
+  :root {
+    --color-primario: lightskyblue;
+    --color-hover: #4646462c;
+    font-family: sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-primario);
+  }
+
+  h1 {
+    margin: 0;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    font-size: 1.2rem;
+    margin-right: auto;
+  }
+
+  button {
+    border: none;
+    padding: 0.5rem;
+    background-color: transparent;
+  }
+
+  button:hover {
+    background-color: var(--color-hover);
+  }
+  
