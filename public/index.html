@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width"/>
     <title>Registro de alumnos</title>
     <script>
       /* invoca a registraServiceWorker instalar la aplicación en el caché del
@@ -38,6 +38,7 @@
 
     <!-- Ícono para la página web. Debe ponerse en la raíz de la página. -->
     <link rel="icon" sizes="32x32" href="favicon.ico">
+    <link rel="stylesheet" media="only screen and (max-width: 768px)" href="estilos.css">
 
     <!-- Color de la barra de navegación de Chrome en dispositivos móviles. -->
     <meta name="theme-color" content="#ffcb2d">
@@ -46,7 +47,7 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- Configuración para Web Clip en Safari. -->
-    <meta name="apple-mobile-web-app-title" content="dmppwa">
+    <meta name="apple-mobile-web-app-title" content="aplipwa">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" href="img/icono-2048.png">
@@ -68,12 +69,9 @@
     <!-- Carga la configuración de tu proyecto en el servidor de Firebase. -->
     <script src="/__/firebase/init.js"></script>
     <body>
-      <form action="javascript:guarda()">
+     <form action="javascript:guarda()" >
           <header>
-            <header>
-             
-              </button>
-            </header>
+         
               
               <h1>Registro de alumnos</h1>
               <button id="agregar" type="button" onclick="alta();">Agregar...</button>
@@ -82,22 +80,22 @@
               
               
           </header>
-          <center><p><input id="nombre" type="text" placeholder="Nombre del alumno" required></p>
-          <p><input id="carrera" type="text" placeholder="Nombre de su carrera" required></p>
-          <p><input id="division" type="text" placeholder="Nombrede su division" required></p>
+          <center><p><input id="nombre" type="text" placeholder="Nombre del alumno" required style="width :auto"></p>
+          <p><input id="carrera" type="text" placeholder="Nombre de su carrera" required style="width : auto";></p>
+          <p><input id="division" type="text" placeholder="Nombre de su division" required style="width :auto";></p></center>
           
         </select>
-          <ul >
-              <li><progress max="100">Cargando…</progress></li>
-  
-          </ul></center>
+        <ul id="lista">
+            <li><progress max="100">Cargando…</progress></li>
+
+        </ul>
           
   
-          <mi-footer></mi-footer>
+          <mi-footer ></mi-footer>
        
-      </form>
+        </form>
       
-      <script>
+        <script>
        
           let id = "";
           const firestore = firebase.firestore();

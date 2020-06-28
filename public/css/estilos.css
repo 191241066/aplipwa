@@ -1,6 +1,7 @@
 body {
     font-family: sans-serif;
-    background-color : #33D8CE;
+    background-color : #33D8CE
+     !important;
 }
 :root {
     --color-hover: #4646462c;
@@ -12,14 +13,21 @@ body {
   }
 
   ul {
-    list-style-type: none;
-    padding: 0;
+    
+    padding: 1;
     margin: 1rem 0;
+    width:auto;
+    border:none;
+    margin-left: auto;
+    margin-right: auto;
+    
   }
 
   li {
     margin: 0.5rem 0;
     padding: 0.5rem;
+    font-size: large;
+    font-weight: bold
   }
 
   li:active {
@@ -67,4 +75,10 @@ body {
   button:hover {
     background-color: var(--color-hover);
   }
+ .MiFooter{
+  margin-left: auto;
+  margin-right: auto;
+
+ }
+
   
