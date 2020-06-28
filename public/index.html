@@ -114,7 +114,7 @@
                       let inner = "";
                       documentos.forEach(doc =>
                           inner += /* html */
-                          `<center><li>
+                          `<li>
                 <button type=button onclick="muestra('${cod(doc.id)}')">
                   ${cod(doc.data().NOM_NOMBRE)} 
                 </button>
@@ -127,7 +127,7 @@
               
                 </button>
                 
-              </li></center>`);
+              </li>`);
                       lista.innerHTML = inner;
                   },
                   e => {
@@ -206,24 +206,25 @@
         
           function cod(valor) {
             return (valor || "").toString()
-                  .replace(/[<>"']/g,
-                      /** @param {string} letra */
-                      letra => {
-                          switch (letra) {
-                              case "<":
-                                  return "&lt;";
-                              case ">":
-                                  return "&gt;";
-                              case '"':
-                                  return "&quot;";
-                              case "'":
-                                  return "&#039;";
-                              default:
-                                  return letra;
-                          }
-                      });
-          }
-      </script>
-      
-  </body>
+                .replace(/[<>"']/g,
+                    /** @param {string} letra */
+                    letra => {
+                        switch (letra) {
+                            case "<":
+                                return "&lt;";
+                            case ">":
+                                return "&gt;";
+                            case '"':
+                                return "&quot;";
+                            case "'":
+                                return "&#039;";
+                            default:
+                                return letra;
+                        }
+                    });
+        }
+    </script>
+    
+</body>
+
 </html>
