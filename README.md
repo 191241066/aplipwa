@@ -1,3 +1,3 @@
-# Reg-Auto
+# Registra Auto
 
 Registro de auto. 
