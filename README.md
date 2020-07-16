@@ -1,3 +1,3 @@
 # aplipwa
 
-Registro de auto. 1
+Registro de auto. 

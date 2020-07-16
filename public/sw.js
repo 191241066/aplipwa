@@ -52,4 +52,4 @@ async function usaCache(evt) {
     } else {
         return fetch(evt.request);
     }
-}1
+}
