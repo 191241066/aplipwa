@@ -4,4 +4,4 @@ class MiFooter extends HTMLElement {
             `<center>Copyright &copy; 2020 Mario Ramirez Toala</center>`;
     }
 }
-customElements.define("mi-footer", MiFooter);
+customElements.define("mi-footer", MiFooter);1

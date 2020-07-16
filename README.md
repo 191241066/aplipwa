@@ -1,3 +1,3 @@
 # aplipwa
 
-Aplicacion web de registro de  alumnos.
+Registro de auto. 1

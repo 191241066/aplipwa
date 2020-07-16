@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width"/>
-    <title>Registro de alumnos</title>
+    <title>Registro de Auto</title>
     <script>
       /* invoca a registraServiceWorker instalar la aplicación en el caché del
        * navegador. No se espera a que termine el registro. */
@@ -73,16 +73,16 @@
           <header>
          
               
-              <h1>Registro de alumnos</h1>
+              <h1>Registro de Auto</h1>
               <button id="agregar" type="button" onclick="alta();">Agregar...</button>
               <button type="submit">Guardar</button>
               <button id="eliminar" type="button" onclick="elimina();">Eliminar</button>
               
               
           </header>
-         <p><input id="nombre" type="text" placeholder="Nombre del alumno" required ></p>
-          <p><input id="carrera" type="text" placeholder="Nombre de su carrera" required ></p>
-          <p><input id="division" type="text" placeholder="Nombre de su division" required ></p>
+         <p><input id="marca" type="text" placeholder="marca del auto" required ></p>
+          <p><input id="modelo1" type="text" placeholder="modelo del auto" required ></p>
+          <p><input id="matricula" type="text" placeholder="matricula del auto" required ></p>
         
         </select>
         <ul id="lista" >
@@ -104,9 +104,9 @@
   
           function muestraLista() {
             
-              firestore.collection("REGISTRO").orderBy("NOM_NOMBRE").onSnapshot
-              firestore.collection("REGISTRO").orderBy("NOM_CARRERA").onSnapshot
-                  firestore.collection("REGISTRO").orderBy("NOM_DIVISION").onSnapshot(
+              firestore.collection("AUTO").orderBy("AU_MARCA").onSnapshot
+              firestore.collection("AUTO").orderBy("AU_MODELO").onSnapshot
+                  firestore.collection("AUTO").orderBy("AU_MATRICULA").onSnapshot(
                
                   documentos => {
                       let inner = "";
@@ -114,13 +114,13 @@
                           inner += /* html */
                           `<li>
                 <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().NOM_NOMBRE)} 
+                  ${cod(doc.data().AU_MARCA)} 
                 </button>
                 <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().NOM_CARRERA)} 
+                  ${cod(doc.data().AU_MODELO)} 
               </button>
               <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().NOM_DIVISION)} 
+                  ${cod(doc.data().AU_MATRICULA)} 
               </button>
               
                 </button>
@@ -139,9 +139,9 @@
               agregar.disabled = true;
               eliminar.disabled = true; 
               id = ""; 
-              nombre.value = ""; 
-              carrera.value="";
-              division.value="";
+              marca.value =""; 
+              modelo1.value="";
+              matricula.value="";
              
           }
           
@@ -150,17 +150,17 @@
                   agregar.disabled = false; 
                   eliminar.disabled = false; 
               
-                  let doc = await firestore.collection("REGISTRO").doc(idSel).get();
+                  let doc = await firestore.collection("AUTO").doc(idSel).get();
                   if (doc.exists) {
                       id = doc.id;
                       let data = doc.data();
-                      nombre.value = data.NOM_NOMBRE || "";
-                      carrera.value = data.NOM_CARRERA || "";
-                      division.value= data.NOM_DIVISION || "";
+                      marca.value = data.AU_MARCA || "";
+                      modelo1.value = data.AU_MODELO || "";
+                      matricula.value= data.AU_MATRICULA || "";
                     
   
                   } else {
-                      alert(" Alumno No registrado.");
+                      alert(" Auto No registrado.");
                       alta();
                   }
               } catch (e) {
@@ -170,17 +170,17 @@
           async function guarda() {
               try {
                   const modelo = {
-                      NOM_NOMBRE: nombre.value.trim(),
-                      NOM_CARRERA: carrera.value.trim(),
-                      NOM_DIVISION : division.value.trim()
+                      AU_MARCA: marca.value.trim(),
+                      AU_MODELO:modelo1.value.trim(),
+                      AU_MATRICULA: matricula.value.trim()
                     
                   };
                   if (id) {
                   
-                      await firestore.collection("REGISTRO").doc(id).set(modelo);
+                      await firestore.collection("AUTO").doc(id).set(modelo);
                   } else {
                   
-                      await firestore.collection("REGISTRO").add(modelo);
+                      await firestore.collection("AUTO").add(modelo);
                   }
                   alta();
               } catch (e) {
@@ -190,7 +190,7 @@
           async function elimina() {
               try {
                
-                  await firestore.collection("REGISTRO").doc(id).delete();
+                  await firestore.collection("AUTO").doc(id).delete();
                   alta();
               } catch (e) {
                   procesaError(e);
@@ -225,4 +225,4 @@
     
 </body>
 
-</html>
+</html>1
