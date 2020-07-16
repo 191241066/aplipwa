@@ -1,6 +1,6 @@
 {
-    "short_name": "apli_pwa",
-    "name": "aplicacion pwa",
+    "short_name": "reg-Auto",
+    "name": "registro de autos",
     "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#4fc3f7",
